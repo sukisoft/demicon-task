@@ -4,8 +4,10 @@ import java.time.Duration;
 import java.time.temporal.ChronoUnit;
 
 import org.springframework.boot.web.client.RestTemplateBuilder;
+import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.support.ReloadableResourceBundleMessageSource;
 import org.springframework.web.client.RestTemplate;
 
 /**
@@ -27,4 +29,13 @@ public class APIConnectorConfiguration {
 		Duration fiveSeconds = Duration.of(5, ChronoUnit.SECONDS);
 		return restTemplateBuilder.setConnectTimeout(fiveSeconds).setReadTimeout(fiveSeconds).build();
 	}
+
+	@Bean
+	public MessageSource messageSource() {
+		ReloadableResourceBundleMessageSource messageSource = new ReloadableResourceBundleMessageSource();
+		messageSource.setBasename("classpath:messages");
+		messageSource.setDefaultEncoding("ISO-8859-1");
+		return messageSource;
+	}
+
 }

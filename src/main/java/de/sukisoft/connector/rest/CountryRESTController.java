@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import de.sukisoft.connector.db.CountryService;
@@ -14,8 +13,7 @@ import de.sukisoft.connector.rest.response.CountriesResponse;
 import de.sukisoft.connector.rest.response.CountryDTO;
 
 @RestController
-@RequestMapping("/api")
-public class CountryRESTController {
+public class CountryRESTController extends AbstractRestController {
 
 	private final CountryService countryService;
 

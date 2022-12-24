@@ -1,0 +1,48 @@
+<!-- Sidebar -->
+<ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion"
+    id="accordionSidebar"
+    th:fragment="sidebar">
+
+	<!-- Sidebar - Brand -->
+	<a class="sidebar-brand d-flex align-items-center justify-content-center"
+	   th:href="@{/view/home}">
+		<div class="sidebar-brand-icon rotate-n-15">
+			<i class="fas fa-users-cog"></i>
+		</div>
+		<div class="sidebar-brand-text mx-3"
+		     th:text="#{sidebar_brand_text}">App
+		</div>
+	</a>
+
+	<!-- Divider -->
+	<hr class="sidebar-divider my-0">
+
+	<!-- Nav Item - Types -->
+	<li class="nav-item">
+		<a class="nav-link"
+		   th:href="@{/view/users}">
+			<i class="fas fa-fw fa-wrench"></i>
+			<span th:text="#{sidebar_users}">Users</span>
+		</a>
+	</li>
+
+	<!-- Nav Item - Types -->
+	<li class="nav-item">
+		<a class="nav-link"
+		   th:href="@{/view/countries}">
+			<i class="fas fa-fw fa-wrench"></i>
+			<span th:text="#{sidebar_countries}">Countries</span>
+		</a>
+	</li>
+
+	<!-- Divider -->
+	<hr class="sidebar-divider d-none d-md-block">
+
+	<!-- Sidebar Toggler (Sidebar) -->
+	<div class="text-center d-none d-md-inline">
+		<button class="rounded-circle border-0"
+		        id="sidebarToggle"></button>
+	</div>
+
+</ul>
+<!-- End of Sidebar -->
