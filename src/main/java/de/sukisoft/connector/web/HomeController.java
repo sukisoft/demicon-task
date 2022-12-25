@@ -4,7 +4,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.thymeleaf.util.StringUtils;
 
+import de.sukisoft.connector.db.Country;
 import de.sukisoft.connector.db.CountryRepository;
 import de.sukisoft.connector.db.UserRepository;
 
@@ -16,20 +19,28 @@ import de.sukisoft.connector.db.UserRepository;
 @Controller
 public class HomeController extends AbstractViewController {
 
-  private final CountryRepository countryRepository;
-  private final UserRepository userRepository;
+	private final CountryRepository countryRepository;
+	private final UserRepository userRepository;
 
-  @Autowired
-  public HomeController(CountryRepository countryRepository, UserRepository userRepository) {
-    this.countryRepository = countryRepository;
-    this.userRepository = userRepository;
-  }
+	private Country chosenCountry;
 
-  @GetMapping("/home")
-  public String main(Model model) {
-    model.addAttribute("countryCount", countryRepository.count());
-    model.addAttribute("userCount", userRepository.count());
-    return "home";
-  }
+	@Autowired
+	public HomeController(CountryRepository countryRepository, UserRepository userRepository) {
+		this.countryRepository = countryRepository;
+		this.userRepository = userRepository;
+	}
 
+	@GetMapping("/home")
+	public String main(Model model) {
+		model.addAttribute("countries", countryRepository.findAll());
+		model.addAttribute("users", userRepository.findAll());
+		return "home";
+	}
+
+	@GetMapping(value = "search")
+	public String showStudentBySurname(@RequestParam(value = "countryName", required = false) String countryName, Model model) {
+		model.addAttribute("users", StringUtils.isEmptyOrWhitespace(countryName) ? userRepository.findAll() : userRepository.findByCountryName(countryName));
+		model.addAttribute("countries", countryRepository.findAll());
+		return "home";
+	}
 }

@@ -1,7 +1,5 @@
 package de.sukisoft.connector.db;
 
-import java.util.Optional;
-
 import org.springframework.data.jpa.repository.JpaRepository;
 
 /**
@@ -15,5 +13,5 @@ public interface CountryRepository extends JpaRepository<Country, Long> {
 	 * @param name the country-name.
 	 * @return the optionally found country.
 	 */
-	Optional<Country> findByName(String name);
+	Country findByName(String name);
 }

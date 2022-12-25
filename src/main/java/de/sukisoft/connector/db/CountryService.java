@@ -40,7 +40,7 @@ public class CountryService {
 	 * @return the found or created {@link Country}.
 	 */
 	public Country getCountry(String countryName) {
-		Optional<Country> byCountryName = countryRepository.findByName(countryName);
+		Optional<Country> byCountryName = Optional.ofNullable(countryRepository.findByName(countryName));
 		return byCountryName.orElseGet(() -> {
 			Country createdCountry = countryRepository.save(Country.builder().name(countryName).build());
 			LOGGER.info("created {}", createdCountry);

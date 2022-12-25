@@ -1,10 +1,8 @@
 package de.sukisoft.connector.db;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-
-import java.util.Optional;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNull;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
@@ -27,16 +25,16 @@ class CountryRepositoryTest {
 		@Test
 		@DisplayName("'country-1' is found.")
 		void when_existingApplicationIsGiven_then_itIsFound() {
-			Optional<Country> byCountryName = repository.findByName("country-1");
-			assertTrue(byCountryName.isPresent(), "country-1 not found!");
-			assertEquals("country-1", byCountryName.get().getName(), "Name does not match!");
+			Country byCountryName = repository.findByName("country-1");
+			assertNotNull(byCountryName, "country-1 not found!");
+			assertEquals("country-1", byCountryName.getName(), "Name does not match!");
 		}
 
 		@Test
 		@DisplayName("not existing Country is not found.")
 		void when_notExistingCountryIsGiven_then_itIsFound() {
-			Optional<Country> byCountryName = repository.findByName("QCyvt");
-			assertFalse(byCountryName.isPresent(), "Country must not exist!");
+			Country byCountryName = repository.findByName("QCyvt");
+			assertNull(byCountryName, "Country must not exist!");
 		}
 	}
 }
