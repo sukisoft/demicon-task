@@ -34,7 +34,7 @@ class CountryRESTControllerTest {
 	@SneakyThrows
 	@Test
 	void shouldFindExistingTestCountry() {
-		MvcResult mvcResult = this.mockMvc.perform(get("/api/countries")).andExpect(status().isOk()).andReturn();
+		MvcResult mvcResult = this.mockMvc.perform(get("/api/v1/countries")).andExpect(status().isOk()).andReturn();
 
 		String actualResponseBody = mvcResult.getResponse().getContentAsString();
 		assertThat(actualResponseBody).contains("country-1");
@@ -45,7 +45,7 @@ class CountryRESTControllerTest {
 	@SneakyThrows
 	@Test
 	void shouldReturnCountriesResponse() {
-		MvcResult mvcResult = this.mockMvc.perform(get("/api")).andExpect(status().isOk()).andReturn();
+		MvcResult mvcResult = this.mockMvc.perform(get("/api/v1")).andExpect(status().isOk()).andReturn();
 
 		String actualResponseBody = mvcResult.getResponse().getContentAsString();
 		assertThat(actualResponseBody).contains("country-1").contains("user-1-first").contains("user-1-last").contains("male").contains("@");

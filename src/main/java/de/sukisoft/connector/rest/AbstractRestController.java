@@ -7,6 +7,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
  *
  * @author wesselmann
  */
-@RequestMapping("/api")
+@RequestMapping("/api/v1")
 public class AbstractRestController {
 }

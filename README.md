@@ -2,52 +2,64 @@
 
 ## api-connector
 
+### prerequisites
+
+- maven 3.6.x
+- Java 11+
+
 ### compiling the app
 
-navigate to the project root directory and run the following maven commands or import the project within an IDE and make us of the run-configurations that will
+navigate to the project root directory and run the following maven commands or import the project within an IDE and make use of the run-configurations that will
 be pre-configured if you are using Intelli-J.
 
 ```shell
 mvn clean install
 ```
 
+then run the created jar-file with e.g.
 ```shell
-mvn sping-boot:run
+java -jar ./target/api-connector-1.0.jar --randomuser-api.userSize=10
 ```
 
 ### settings
 
-the connector can be configured by the 3 following settings:
+The connector can be configured by the 3 following settings:
 
-#### url
+#### randomuser-api.url
 
-the URL of the randomuser-api, has to be set and be not null.
+The URL of the randomuser-api, has to be set and be not null.
 
 *default value*: https://randomuser.me/api
 
-#### userSize
+*command line usage*: --randomuser-api.url=*myurl*
 
-the amount of users to retrieve in one synchronization.
+#### randomuser-api.userSize
+
+The amount of users to retrieve in one synchronization. A minimum of 1 and a maximum of 100 is applied.
 
 *default value*: 25
-*min value*: 1
-*max value*: 100
 
-#### period
+*command line usage*: --randomuser-api.userSize=50
 
-the time-period in seconds in which a synchronization will be performed.
+#### randomuser-api.period
+
+The time-period in seconds in which a synchronization will be performed. A minimum of 10 seconds and a maximum of 1 hour is applied.
 
 *default value*: 60
-*min value*: 10
-*max value*: 3600
+
+*command line usage*: --randomuser-api.period=100
+
+## api-connector web-app
+
+The web-app can be found at http://localhost:8080/view/home
 
 ## rest endpoints
 
-this application exposes the following rest-endpoints.
+This application exposes the following rest-endpoints. The Open-API specification can be found at http://localhost:8080/api/v1/swagger-ui/index.html
 
-*api-root*: api
+*api-root*: /api/v1/
 
-### /
+### /api/v1
 
 retrieve the Countries-Response in the form of
 
@@ -73,7 +85,7 @@ retrieve the Countries-Response in the form of
 }
 ```
 
-## /countries
+## /api/v1/countries
 
 retrieve a list of all countries that are currently present
 

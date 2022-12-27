@@ -24,7 +24,7 @@ class CountryRepositoryTest {
 
 		@Test
 		@DisplayName("'country-1' is found.")
-		void when_existingApplicationIsGiven_then_itIsFound() {
+		void shouldFoundExistingCountryByItsName() {
 			Country byCountryName = repository.findByName("country-1");
 			assertNotNull(byCountryName, "country-1 not found!");
 			assertEquals("country-1", byCountryName.getName(), "Name does not match!");
@@ -32,7 +32,7 @@ class CountryRepositoryTest {
 
 		@Test
 		@DisplayName("not existing Country is not found.")
-		void when_notExistingCountryIsGiven_then_itIsFound() {
+		void shouldNotFindNotExistingCountry() {
 			Country byCountryName = repository.findByName("QCyvt");
 			assertNull(byCountryName, "Country must not exist!");
 		}

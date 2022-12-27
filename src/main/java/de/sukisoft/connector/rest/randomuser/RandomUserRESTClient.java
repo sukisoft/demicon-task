@@ -49,6 +49,7 @@ public class RandomUserRESTClient {
 		ResponseEntity<RandomUserResponse> webserviceResponse = restTemplate.getForEntity(targetURL + "?results=" + amount, RandomUserResponse.class);
 		RandomUserResponse responseBody = webserviceResponse.getBody();
 		if (webserviceResponse.getStatusCode().is2xxSuccessful() && responseBody != null) {
+			LOGGER.info("retrieved Status 200, returning results");
 			userResponses = responseBody.getResults();
 		} else {
 			LOGGER.error("error connecting to randomuser API, please check URL and configuration");
